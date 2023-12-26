@@ -14,3 +14,9 @@
 # limitations under the License.
 """
 """
+
+from . import config, base
+
+APP = None
+
+construct = base.construct
