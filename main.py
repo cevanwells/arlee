@@ -14,3 +14,19 @@
 # limitations under the License.
 """
 """
+
+if __name__ == "__main__":
+    import app
+    APP = app.construct(__name__)
+
+    @APP.before_serving
+    async def startup():
+        
+        async with APP.app_context():
+            from app import endpoints
+    
+    @APP.after_serving
+    async def shutdown():
+        APP.background_tasks.clear()
+        
+    APP.run(port=4888)
